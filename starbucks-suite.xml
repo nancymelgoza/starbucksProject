@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Starbucks Suite">
+  <parameter name="browser" value="firefox" />
+ <!--<parameter name="username" value="tae.globant.training@gmail.com"/>
+  <parameter name="password" value="GlobantTAE_1"/>-->
+  <test name="My trainning">
+    <classes>
+      <class name="tests.StarbucksTests"></class>
+    </classes>
+  </test>
+</suite>

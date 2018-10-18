@@ -1,0 +1,5 @@
+pages\BasePage.class
+pages\StarbucksCoffee.class
+pages\StarbucksGift.class
+pages\StarbucksHomePage.class
+driver\MyDriver.class

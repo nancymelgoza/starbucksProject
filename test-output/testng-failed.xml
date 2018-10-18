@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Starbucks Suite]">
+  <parameter name="browser" value="firefox"/>
+  <test name="My trainning(failed)">
+    <classes>
+      <class name="tests.StarbucksTests">
+        <methods>
+          <include name="GiftCardsSesion" invocation-numbers="0"/>
+          <include name="testStarbucksCoffeePage" invocation-numbers="0"/>
+          <include name="beforeSuite"/>
+        </methods>
+      </class> <!-- tests.StarbucksTests -->
+    </classes>
+  </test> <!-- My trainning(failed) -->
+</suite> <!-- Failed suite [Starbucks Suite] -->
