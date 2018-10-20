@@ -5,7 +5,7 @@
     <classes>
       <class name="tests.StarbucksTests">
         <methods>
-          <include name="testStarbucksCoffeePage"/>
+          <include name="testStarbucksHomePage" invocation-numbers="0 1 2 3 4 5 6 7"/>
         </methods>
       </class> <!-- tests.StarbucksTests -->
     </classes>

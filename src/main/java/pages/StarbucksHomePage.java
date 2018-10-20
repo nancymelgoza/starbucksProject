@@ -1,5 +1,7 @@
 package pages;
 
+import java.util.ArrayList;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -79,24 +81,23 @@ public class StarbucksHomePage extends BasePage {
 
 	@FindBy(id = "amount")
 	private WebElement amount;
-//
-//	@FindBy(css = "input.fieldInput")
-//	private WebElement message;
+
 	
 	@FindBy(id = "message")
 	private WebElement message;
 	
-	@FindBy(xpath = "//*[@id=\"content\"]/div[2]/div/div/div/div/div[2]/form/div[5]/div/span/div/button")
+	@FindBy(xpath = "//button[contains(.,'Checkout')]")
 	private WebElement checkout;
 	
 	@FindBy(how = How.CSS, using = "#paymentMethod > option:nth-child(2)")
 	private WebElement paymentMethod;
 	
-	@FindBy(xpath = "//*[@id=\"js-content\"]/div/div[4]/span/div/div[2]/div/div/div/div/div[3]/div/span/div/button")
+	@FindBy(xpath = "//button[contains(.,'Send gift')]")
 	private WebElement sendAGift;
 
-	@FindBy(how = How.CSS, using = "div.invisible:nth-child(4) > div:nth-child(1) > span:nth-child(1) > div:nth-child(1) > button:nth-child(1)")
+	@FindBy(xpath = "//button[contains(.,'Continue')]")
 	private WebElement continueButton;
+
 	
 	public StarbucksCoffee clickCoffee() {
 		try {
@@ -171,6 +172,24 @@ public class StarbucksHomePage extends BasePage {
 		}
 		return this;
 	}
+	
+	public String getElement(Integer id) {
+		
+		ArrayList<String> elementlist = new ArrayList<String>();
+
+		elementlist.add(getCoffee().getText());
+		elementlist.add(getTea().getText());
+		elementlist.add(getMenu().getText());
+		elementlist.add(getCoffeehouse().getText());
+		elementlist.add(getSocialimpact().getText());
+		elementlist.add(getStarbucksrewards().getText());
+		elementlist.add(getBlog().getText());
+		elementlist.add(getGiftcards().getText());
+		
+		return elementlist.get(id);
+
+	}
+
 
 	public WebElement getContinueButton() {
 		return continueButton;

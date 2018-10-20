@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Starbucks Suite">
-  <parameter name="browser" value="firefox" />
+  <parameter name="browser" value="chrome" />
  <!--<parameter name="username" value="tae.globant.training@gmail.com"/>
   <parameter name="password" value="GlobantTAE_1"/>-->
   <test name="My trainning">

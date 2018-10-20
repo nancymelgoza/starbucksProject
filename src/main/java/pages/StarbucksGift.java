@@ -24,7 +24,7 @@ public class StarbucksGift extends BasePage{
 	@FindBy(className = "sb-frap")
 	private WebElement sign;
 
-	@FindBy(xpath="//*[@id=\"js-content\"]/div/div[2]/header/nav/ul/li[3]/a")
+	@FindBy(xpath="//a[contains(.,'Gift')]")
 	private WebElement gift;
 
 	@FindBy(xpath="//*[@id=\"carousel1\"]/div[2]/div[2]/button/div/div/div[2]/img")

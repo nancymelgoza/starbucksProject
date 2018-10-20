@@ -6,7 +6,6 @@
     <classes>
       <class name="tests.StarbucksTests">
         <methods>
-          <include name="GiftCardsSesion" invocation-numbers="0"/>
           <include name="testStarbucksCoffeePage" invocation-numbers="0"/>
           <include name="beforeSuite"/>
         </methods>

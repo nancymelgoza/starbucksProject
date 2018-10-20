@@ -1,5 +1,7 @@
 package pages;
 
+import java.util.ArrayList;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,17 +15,17 @@ public class StarbucksCoffee extends BasePage{
 
 	}
 	
-	 @FindBy(how = How.CSS, using = ".light")
+	 @FindBy(xpath ="//button[@class ='finder-question light flavor-question question-a col-xs-12 col-sm-4 col-md-4 col-lg-4 text-center']")
 	 private WebElement buton1;
 
 
-	 @FindBy(how = How.CSS, using =".collapsed > div:nth-child(4) > h4:nth-child(1)")
+	 @FindBy(xpath ="//h4[contains(.,'Lighthearted and sunny')]")
 	 private WebElement verifybuton1;
 	 
 	 @FindBy(how = How.CSS, using = "#question2 > button:nth-child(1)")
 	 private WebElement buton2;
 	 
-	 @FindBy(how = How.CSS, using = ".question2 > div:nth-child(1) > div:nth-child(1) > div:nth-child(4) > h4:nth-child(1)")
+	 @FindBy(xpath ="//h4[contains(.,'A group of friends')]")
 	 private WebElement verifybuton2;
 	 
 	 @FindBy(how = How.CSS, using = "#light-questions > button:nth-child(2)")
@@ -41,26 +43,38 @@ public class StarbucksCoffee extends BasePage{
 	 @FindBy(id="find-my-coffee")
 	 private WebElement btnFindCoffee;
 	 
-	 public StarbucksCoffee clicksbuttons(WebElement btn1, WebElement btn2, WebElement btn3, WebElement btn4, WebElement bnFindCoffee) {
+	 public StarbucksCoffee clicksbuttons() {
 		 
-		getWait().until(ExpectedConditions.visibilityOf(btn1));
-		btn1.click();
+		getWait().until(ExpectedConditions.visibilityOf(buton1));
+		buton1.click();
 		getWait().until(ExpectedConditions.visibilityOf(verifybuton1));
 		
-		getWait().until(ExpectedConditions.visibilityOf(btn2));
-		btn2.click();
+		getWait().until(ExpectedConditions.visibilityOf(buton2));
+		buton2.click();
 		getWait().until(ExpectedConditions.visibilityOf(verifybuton2));
 		
-		getWait().until(ExpectedConditions.visibilityOf(btn3));
-		btn3.click();
+		getWait().until(ExpectedConditions.visibilityOf(buton3));
+		buton3.click();
 		getWait().until(ExpectedConditions.visibilityOf(verifybuton3));
 		
-		getWait().until(ExpectedConditions.visibilityOf(btn4));
-		btn4.click();
+		getWait().until(ExpectedConditions.visibilityOf(buton4));
+		buton4.click();
 		getWait().until(ExpectedConditions.visibilityOf(verifybuton4));
 		
 		 return this;
 	 }
+		public String getNameButton(Integer id) {
+			
+			ArrayList<String> elementlist = new ArrayList<String>();
+
+			elementlist.add(getButon1().getText());
+			elementlist.add(getButon2().getText());
+			elementlist.add(getButon3().getText());
+			elementlist.add(getButon4().getText());
+			
+			return elementlist.get(id);
+
+		}
 	 
 	public String geturl() {
 		String currentURL = driver.getCurrentUrl();

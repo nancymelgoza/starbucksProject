@@ -1,17 +1,18 @@
 package tests;
 
 import org.openqa.selenium.WebElement;
+import org.slf4j.impl.Log4jLoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
-import java.util.logging.Logger;
+import org.slf4j.Logger;
 import pages.StarbucksCoffee;
 import pages.StarbucksHomePage;
 
 public class StarbucksTests extends BaseTests {
 
-	private static final Logger LOGGER = Logger.getLogger(StarbucksTests.class.getName());
+	static final org.slf4j.Logger LOGGER = new Log4jLoggerFactory().getLogger(StarbucksTests.class.getName());
+	
 //TC1 MENU 
 	/*
 	 * TC Menu: The options should be : COFFEE, TEA, MENU, COFFEHOUSE, SOCIAL
@@ -20,19 +21,21 @@ public class StarbucksTests extends BaseTests {
 
 	@DataProvider(name = "NavData")
 	public Object[][] homePageValidation() {
-		StarbucksHomePage homepage = new StarbucksHomePage(myDriver.getDriver());
-		return new Object[][] { { homepage.getCoffee().getText(), "COFFEE" }, { homepage.getTea().getText(), "TEA" },
-				{ homepage.getMenu().getText(), "MENU" }, { homepage.getCoffeehouse().getText(), "COFFEEHOUSE" },
-				{ homepage.getSocialimpact().getText(), "SOCIAL IMPACT" },
-				{ homepage.getStarbucksrewards().getText(), "STARBUCKS REWARDS" },
-				{ homepage.getBlog().getText(), "BLOG" }, { homepage.getGiftcards().getText(), "GIFT CARDS" } };
+		
+		return new Object[][] { {"COFFEE", 0}, {"TEA", 1},
+				{"MENU",2}, {"COFFEEHOUSE", 3},
+				{"SOCIAL IMPACT", 4},
+				{"STARBUCKS REWARDS",5},
+				{"BLOG", 6}, {"GIFT CARDS", 7}};
 	}
 
 	@Test(priority = 1, dataProvider = "NavData")
-	public void testStarbucksHomePage(String tabSend, String tabExpect) throws InterruptedException {
+	public void testStarbucksHomePage(String tabExpect, Integer id) throws InterruptedException {
+		
+		StarbucksHomePage homepage = new StarbucksHomePage(myDriver.getDriver());
 
-		LOGGER.info("Actual: " + tabSend);
-		Assert.assertEquals(tabSend, tabExpect);
+		LOGGER.info("Actual: " + homepage.getElement(id) + " expected " + tabExpect);
+		Assert.assertEquals(homepage.getElement(id), tabExpect);
 
 	}
 
@@ -47,35 +50,32 @@ public class StarbucksTests extends BaseTests {
 	@DataProvider(name="options")
 	public Object[][] coffeeValidation() {
 
-		StarbucksCoffee homepage = new StarbucksCoffee(myDriver.getDriver());
 		return new Object[][] {
 
-				{ homepage.getButon1(), homepage.getVerifybuton1(), homepage.getButon2(), homepage.getVerifybuton2(),
-						homepage.getButon3(), homepage.getVerifybuton3(), homepage.getButon4(),
-						homepage.getVerifybuton4(), homepage.getBtnFindCoffee() }
+				{ "Lighthearted and sunny","A group of friends", "Cocoa", "I like things simple"}
 
 		};
 	}
 
 	@Test(priority = 2, dataProvider = "options")
-	public void testStarbucksCoffeePage(WebElement btn1, WebElement r1, WebElement btn2, WebElement r2, WebElement btn3,
-			WebElement r3, WebElement btn4, WebElement r4, WebElement btnFindCoffee) throws InterruptedException {
+	public void testStarbucksCoffeePage(String valbtn1,String valbtn2, String valbtn3, String valbtn4) throws InterruptedException {
 
 		StarbucksHomePage starbucksHomePage = new StarbucksHomePage(myDriver.getDriver());
 		StarbucksCoffee homepage = starbucksHomePage.clickCoffee();
 
-		homepage.clicksbuttons(btn1, btn2, btn3, btn4, btnFindCoffee);
+		homepage.clicksbuttons();
 		
-		LOGGER.info("Actual: " + r1.getText());
-		LOGGER.info("Actual: " + r2.getText());
-		LOGGER.info("Actual: " + r3.getText());
-		LOGGER.info("Actual: " + r4.getText());
+		LOGGER.info("Actual: " + homepage.getVerifybuton1().getText());
+		LOGGER.info("Actual: " + homepage.getVerifybuton2().getText());
+		LOGGER.info("Actual: " + homepage.getVerifybuton3().getText());
+		LOGGER.info("Actual: " + homepage.getVerifybuton4().getText());
 		LOGGER.info("the url actual is: " + homepage.geturl());
-		
-		Assert.assertEquals(r1.getText(), "Lighthearted and sunny");
-		Assert.assertEquals(r2.getText(), "A group of friends");
-		Assert.assertEquals(r3.getText(), "Cocoa");
-		Assert.assertEquals(r4.getText(), "I like things simple");
+
+
+		Assert.assertEquals(homepage.getVerifybuton1().getText(), valbtn1);
+		Assert.assertEquals(homepage.getVerifybuton2().getText(), valbtn2);
+		Assert.assertEquals(homepage.getVerifybuton3().getText(), valbtn3);
+		Assert.assertEquals(homepage.getVerifybuton4().getText(), valbtn4);
 		homepage.getBtnFindCoffee().click();
 		Assert.assertEquals(homepage.geturl(), "https://athome.starbucks.com/coffee-finder/");
 
